@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>多 Sheet 一段线统计</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #f5f6fa;
+            padding: 20px;
+        }
+        h1 { color: #2c3e50; }
+        .container { max-width: 900px; margin: auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .btn { display: inline-block; margin: 10px 0; padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; }
+        .btn:hover { background: #45a049; }
+        input[type=file], input[type=number] { padding: 5px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        label { font-weight: bold; }
+        form div { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📄 多 Sheet 一段线统计</h1>
+
+    <p>上传包含多个 sheet 的成绩表，每个 sheet 需包含 “班级”、“姓名”、“总分” 列，然后输入上一段线分数即可统计各班上一段线名单及一次/两次上一段线统计。</p>
+
+    <!-- 下载模板按钮 -->
+    <a href="/score/analyze/download_template" class="btn">⬇ 下载模板</a>
+
+    <hr>
+
+    <form action="/score/analyze" method="POST" enctype="multipart/form-data">
+        <div>
+            <label>上传成绩 Excel 文件：</label>
+            <input type="file" name="file" required>
+        </div>
+
+        <div>
+            <label>每个 sheet 的上一段线分数（用逗号分隔，如 Sheet1:550,Sheet2:530）:</label>
+            <input type="text" name="cutlines" placeholder="示例：班级1:550,班级2:530" required>
+        </div>
+
+        <button type="submit" class="btn">📊 统计上一段线名单</button>
+    </form>
+</div>
+</body>
+</html>

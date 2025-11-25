@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>成绩赋分</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; background: #f5f6fa; }
+        h1 { color: #333; }
+        .container { background: #fff; padding: 30px; border-radius: 12px; width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        a, button { display: block; margin: 15px 0; padding: 12px; text-align: center; text-decoration: none; border-radius: 8px; font-size: 16px; }
+        a { background: #3498db; color: white; }
+        button { background: #2ecc71; color: white; border: none; cursor: pointer; }
+        input[type=file] { margin-top: 10px; }
+        .flash { color: green; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <h1>成绩赋分工具</h1>
+    <div class="container">
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for msg in messages %}
+              <div class="flash">{{ msg }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <!-- 下载模板 -->
+        <a href="{{ url_for('download_template') }}">⬇ 下载成绩模板</a>
+
+        <!-- 上传文件 -->
+        <form method="post" enctype="multipart/form-data">
+            <label for="file">上传成绩文件：</label>
+            <input type="file" name="file" id="file" required>
+            <button type="submit">上传文件</button>
+        </form>
+
+    </div>
+
+</body>
+</html>
